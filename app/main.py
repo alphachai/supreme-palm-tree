@@ -107,6 +107,7 @@ async def delete_order(id: int, db: Session = Depends(get_db)):
 # Pizzas
 @app.post("/pizzas/", response_model=Dict[str, schemas.Pizza])
 async def create_pizza(pizza: schemas.PizzaCreate, db: Session = Depends(get_db)):
+    assert all([isinstance(t, schemas.Topping) for t in pizza.toppings])
     fields = {"order_id": pizza.order_id, "toppings": pizza.toppings}
     return {"pizza": crud.create(db=db, model=models.Pizza, **fields)}
 

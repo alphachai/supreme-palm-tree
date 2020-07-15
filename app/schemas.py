@@ -42,11 +42,11 @@ class Status(IntEnum):
 # Pizza
 class PizzaBase(BaseModel):
     toppings: List[Topping]
+    order_id: int
 
 
 class PizzaCreate(PizzaBase):
-    order_id: int
-
+    pass
 
 class Pizza(PizzaBase):
     id: int

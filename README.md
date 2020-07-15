@@ -14,24 +14,26 @@ You'll need to have `docker` and `docker-compose` installed, but that's it! Run 
 
 🟡 - work-in-progress
 
+❌ - incomplete
+
 
 
 ## API
 
 Full documentation and interactive examples is generated via [Swagger](https://swagger.io/tools/swagger-ui/). View at `http://127.0.0.1:8000/docs`.
 
-| Endpoint | Description | GET | POST | PUT |
-| - | - | - | - | - |
-| / | Health check | ☑️🟢 |  |  |
-| /users/ | list/create users | ☑️🟢 | ☑️🟢 |  |
-| /users/{id}/ | describe/update user | ☑️🟢 |  | ☑️🟢 |
-| /orders/ | list/create orders | ☑️🟢 | ☑️🟢 |  |
-| /orders/{id}/ | describe order | ☑️🟢 |  |  |
-| /orders/status/ | list order statuses | ☑️🟢 |  | |
-| /pizzas/ | list/create pizzas | ☑️🟡 | ☑️🟡 |  |
-| /pizzas/{id}/ | describe/update pizza | ☑️🟡 |  | ☑️ |
-| /pizzas/toppings/ | list/create toppings | ☑️🟢 | ☑️ |  |
-| /pizzas/toppings/{id}/ | describe/update topping | ☑️ |  | ☑️ |
+| Endpoint | Description | GET | POST | PUT | DELETE |
+| - | - | - | - | - | - |
+| / | Health check | ☑️🟢 |  |  |  |
+| /users/ | list/create users | ☑️🟢 | ☑️🟢 |  |  |
+| /users/{id}/ | describe/update user | ☑️🟢 |  | ☑️🟢 |  |
+| /orders/ | list/create orders | ☑️🟢 | ☑️🟢 |  |  |
+| /orders/{id}/ | describe/update order | ☑️🟢 |  | ☑️🟢 | ☑️🟢 |
+| /orders/status/ | list order statuses | ☑️🟢 |  |  |  |
+| /pizzas/ | list/create pizzas | ☑️🟢 | ☑️🟢 |  |  |
+| /pizzas/{id}/ | describe pizza | ☑️🟢 |  | ☑️❌ |  |
+| /pizzas/toppings/ | list/create toppings | ☑️🟢 | ☑️❌ |  |  |
+| /pizzas/toppings/{id}/ | describe/update topping | ☑️❌ |  | ☑️❌ |  |
 
 
 
@@ -41,12 +43,12 @@ This project uses sqlalchemy to manage postgresql models and alembic to generate
 
 #### Models
 
-* User🟢
-* Order🟢
-* OrderStatus🟢
-* Pizza🟢
-* Topping
-* PizzaTopping
+* User 🟢
+* Order 🟢
+* OrderStatus 🟢 (enum, `schemas.Status`)
+* Pizza 🟢
+* Topping 🟢 (enum, `schemas.Topping`)
+* PizzaTopping ❌
 
 
 #### Migrations
