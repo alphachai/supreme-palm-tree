@@ -4,6 +4,26 @@ from typing import List
 
 from pydantic import BaseModel
 
+
+# Using an enum as a placeholder for a real model to simplify.
+class Topping(IntEnum):
+    PEPPERONI = 1
+    SAUSAGE = 2
+    PINEAPPLE = 3
+    MUSHROOM = 4
+
+
+# Using an enum as a placeholder for a real model to simplify.
+class Status(IntEnum):
+    STARTED = 1
+    SUBMITTED = 2
+    PREPARING = 3
+    OUT_FOR_DELIVERY = 4
+    DELIVERED = 5
+    READY_FOR_PICKUP = 6
+    CANCELED = 7
+
+
 # Pizza Topping (many-to-many)
 # class PizzaToppingBase(BaseModel):
 #     pizza_id: int
@@ -21,7 +41,7 @@ from pydantic import BaseModel
 
 # Pizza
 class PizzaBase(BaseModel):
-    toppings: list = []
+    toppings: List[Topping]
 
 
 class PizzaCreate(PizzaBase):
@@ -55,6 +75,7 @@ class Pizza(PizzaBase):
 class OrderBase(BaseModel):
     user_id: int
     timestamp: datetime.datetime
+    status: Status
 
 
 class OrderCreate(OrderBase):
@@ -70,17 +91,6 @@ class Order(OrderBase):
 
 
 # Order Status
-# Using an enum as a placeholder for a real model to simplify.
-class Status(IntEnum):
-    STARTED = 1
-    SUBMITTED = 2
-    PREPARING = 3
-    OUT_FOR_DELIVERY = 4
-    DELIVERED = 5
-    READY_FOR_PICKUP = 6
-    CANCELED = 7
-
-
 class OrderStatusBase(BaseModel):
     status: int
     order_id: int

@@ -17,19 +17,25 @@ class Order(Base):
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("user.id"))
     timestamp = Column(types.TIMESTAMP)
+    status_id = Column(Integer)
     pizzas = relationship("Pizza")
 
 
-class OrderStatus(Base):
-    __tablename__ = "order_status_update"
-    id = Column(Integer, primary_key=True, index=True)
-    order_id = Column(Integer, ForeignKey("order.id"))
-    timestamp = Column(types.TIMESTAMP)
-    status = Column(Integer)
-
-
-# I suspect this basically never changes, so an enum is probably enough to start.
-# ..partially because I'm avoiding writing more endpoints for this demo.
+# Ideally, this should be a many to many relationship
+# Status <- OrderStatus -> Order
+# We'd want to track the throughput of orders. Alternatively, you could store
+# status directly on the order row and track performance / throughput another way.
+# Possibly via audit logging or simply prometheus metrics (since we likely care
+# more about aggregate performance than individual orders when reviewing
+# performance.)
+#
+# class OrderStatus(Base):
+#     __tablename__ = "order_status_update"
+#     id = Column(Integer, primary_key=True, index=True)
+#     order_id = Column(Integer, ForeignKey("order.id"))
+#     timestamp = Column(types.TIMESTAMP)
+#     status = Column(Integer)
+#
 # See app.schemas.Status(IntEnum)
 # class OrderStatusType(Base):
 #     __tablename__ = "order_status_type"
@@ -45,7 +51,7 @@ class Pizza(Base):
     # toppings = relationship("PizzaTopping")
 
 
-# Axing these to save time.
+# Axing these in favor of an enum to save time.
 # class Topping(Base):
 #     __tablename__ = "topping"
 #     id = Column(Integer, primary_key=True, index=True)

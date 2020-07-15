@@ -28,9 +28,9 @@ Full documentation and interactive examples is generated via [Swagger](https://s
 | /orders/ | list/create orders | ☑️🟢 | ☑️🟢 |  |
 | /orders/{id}/ | describe order | ☑️🟢 |  |  |
 | /orders/status/ | list order statuses | ☑️🟢 |  | |
-| /pizzas/ | list/create pizzas | ☑️ | ☑️ |  |
-| /pizzas/{id}/ | describe/update pizza | ☑️ |  | ☑️ |
-| /pizzas/toppings/ | list/create toppings | ☑️ | ☑️ |  |
+| /pizzas/ | list/create pizzas | ☑️🟡 | ☑️🟡 |  |
+| /pizzas/{id}/ | describe/update pizza | ☑️🟡 |  | ☑️ |
+| /pizzas/toppings/ | list/create toppings | ☑️🟢 | ☑️ |  |
 | /pizzas/toppings/{id}/ | describe/update topping | ☑️ |  | ☑️ |
 
 
