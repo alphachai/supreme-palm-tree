@@ -1,4 +1,5 @@
 import logging
+from typing import List
 
 import pydantic
 from decouple import config
@@ -16,6 +17,7 @@ logger = logging.getLogger()
 def commit(db: Session):
     try:
         db.commit()
+        return True
     except IntegrityError as e:
         if config("DEBUG"):
             # Do not expose schema in production.
@@ -61,4 +63,9 @@ def read(db: Session, model: Base, skip: int, limit: int):
 
 def update(db: Session, query: Query, data: pydantic.BaseModel):
     query.update(data.dict(exclude_unset=True))
-    commit(db)
+    return commit(db)
+
+def delete(db: Session, model: Base, ids: List[int]):
+    query = db.query(model).filter(model.id.in_(ids))
+    query.delete(synchronize_session=False)
+    return commit(db)

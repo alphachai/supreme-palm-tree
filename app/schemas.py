@@ -73,9 +73,9 @@ class Pizza(PizzaBase):
 
 # Order
 class OrderBase(BaseModel):
-    user_id: int
-    timestamp: datetime.datetime
-    status: Status
+    user_id: int = None
+    timestamp: datetime.datetime = None
+    status_id: Status
 
 
 class OrderCreate(OrderBase):
