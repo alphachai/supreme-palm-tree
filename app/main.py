@@ -40,7 +40,7 @@ async def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
 
 @app.get("/users/", response_model=Dict[str, List[schemas.User]])
 async def get_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    return {"users": crud.list_all(db, models.User, skip, limit)}
+    return {"users": crud.read(db, models.User, skip, limit)}
 
 
 @app.get("/users/{id}/", response_model=Dict[str, schemas.User])
@@ -69,7 +69,7 @@ async def create_order(order: schemas.OrderCreate, db: Session = Depends(get_db)
 
 @app.get("/orders/", response_model=Dict[str, List[schemas.Order]])
 async def get_orders(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    return {"orders": crud.list_all(db, models.Order, skip, limit)}
+    return {"orders": crud.read(db, models.Order, skip, limit)}
 
 
 @app.get("/orders/status/")
@@ -100,7 +100,7 @@ async def get_order(id: int, db: Session = Depends(get_db)):
 #
 # @app.get("/pizzas/", response_model=Dict[str, List[schemas.Pizza]])
 # async def get_pizzas(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-#     return {"pizzas": crud.list_all(db, models.Pizza, skip, limit)}
+#     return {"pizzas": crud.read(db, models.Pizza, skip, limit)}
 #
 #
 # @app.get("/pizzas/{id}/", response_model=Dict[str, schemas.Pizza])

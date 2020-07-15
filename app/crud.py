@@ -44,7 +44,7 @@ def create(db: Session, model: Base, **kwargs):
     return entity
 
 
-def list_all(db: Session, model: Base, skip: int, limit: int):
+def read(db: Session, model: Base, skip: int, limit: int):
     """List all entities for a given model.
 
     Args:
