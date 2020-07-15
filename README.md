@@ -41,10 +41,10 @@ This project uses sqlalchemy to manage postgresql models and alembic to generate
 
 #### Models
 
-* User
-* Order
-* OrderStatus
-* Pizza
+* User🟢
+* Order🟢
+* OrderStatus🟢
+* Pizza🟢
 * Topping
 * PizzaTopping
 
@@ -60,7 +60,7 @@ After changes to the models, generate new migrations with the following process.
 * Open a shell within the container.
   `make exec`
 * Generate migrations - these will be reflected in your project checkout, since the directory is mounted as a volume by the container.
-  `alembic revision --autogenerate -m "change name/description"`
+  `alembic revision --autogenerate -m "change desc"`
 
 *for more info, please see the [Alembic docs](https://alembic.sqlalchemy.org/en/latest/autogenerate.html)*
 
@@ -69,14 +69,17 @@ After changes to the models, generate new migrations with the following process.
 ## Code Quality
 
 Linted with `flake8` (style and potential bugs) and `isort` (import sorting).
+
 Formatted automatically with `black` (style), `autoflake` (unused imports), and `isort`.
+
+
 
 
 ## Testing
 
 None yet.
 
-* Tests should be 100% deterministic and repeatable.
+* Tests should be deterministic and repeatable.
 * Tests should always setup and teardown.
 * Tests should be structured to allow parallelization without clashing. (namespace mocks/stubs)
 * I prefer test coverage > 90%.

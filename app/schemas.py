@@ -91,20 +91,20 @@ class Order(OrderBase):
 
 
 # Order Status
-class OrderStatusBase(BaseModel):
-    status: int
-    order_id: int
-
-
-class OrderStatusCreate(OrderStatusBase):
-    pass
-
-
-class OrderStatus(OrderStatusBase):
-    id: int
-
-    class Config:
-        orm_mode = True
+# class OrderStatusBase(BaseModel):
+#     status: int
+#     order_id: int
+#
+#
+# class OrderStatusCreate(OrderStatusBase):
+#     pass
+#
+#
+# class OrderStatus(OrderStatusBase):
+#     id: int
+#
+#     class Config:
+#         orm_mode = True
 
 
 # User

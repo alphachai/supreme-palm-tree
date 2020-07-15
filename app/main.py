@@ -77,7 +77,7 @@ async def get_order_status():
     return {"order_status": {s.value: s.name for s in schemas.Status}}
 
 
-@app.get("/orders/{id}/")
+@app.get("/orders/{id}/", response_model=Dict[str, schemas.Order])
 async def get_order(id: int, db: Session = Depends(get_db)):
     obj = db.query(models.Order).filter(models.Order.id == id).first()
     if not obj:

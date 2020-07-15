@@ -11,6 +11,7 @@ services:
             PGSQL_SERVER: supreme-palm-tree-db
             PGSQL_DB: spt
             DATABASE_URL: postgresql://spt:spt@supreme-palm-tree-db/spt
+            SQLA_DATABASE_URL: postgresql+psycopg2://spt:spt@supreme-palm-tree-db/spt
             DEBUG: "true"
         volumes:
             - ..:/app
