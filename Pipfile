@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[requires]
+python_version = "3.8"
+
+[packages]
+alembic = "*"
+fastapi = "*"
+gunicorn = "*"
+psycopg2-binary = "*"
+pydantic = "*"
+uvicorn = "*"
+python-decouple = "*"
+requests = "*"
+sqlalchemy = "*"
+
+[dev-packages]
+pytest = "*"

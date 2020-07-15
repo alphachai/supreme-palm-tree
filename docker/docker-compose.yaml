@@ -1,0 +1,38 @@
+version: '3.7'
+services:
+    supreme-palm-tree:
+        image: "supreme-palm-tree"
+        build:
+            context: ..
+            dockerfile: docker/Dockerfile
+        environment:
+            PGSQL_USER: spt
+            PGSQL_PASS: spt
+            PGSQL_SERVER: supreme-palm-tree-db
+            PGSQL_DB: spt
+            DATABASE_URL: postgresql://spt:spt@supreme-palm-tree-db/spt
+            DEBUG: "true"
+        volumes:
+            - ..:/app
+        ports:
+            - "80"
+        depends_on:
+            - supreme-palm-tree-db
+
+    supreme-palm-tree-db:
+        image: postgres:12-alpine
+        environment:
+            POSTGRES_USER: spt
+            POSTGRES_PASSWORD: spt
+            POSTGRES_DB: spt
+
+    supreme-palm-tree-proxy:
+        image: nginx:alpine
+        volumes:
+            - type: bind
+              source: ../config/nginx
+              target: /etc/nginx/conf.d
+        ports:
+            - "${DEV_PORT}80"
+        depends_on:
+            - supreme-palm-tree
