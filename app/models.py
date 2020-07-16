@@ -21,6 +21,14 @@ class Order(Base):
     pizzas = relationship("Pizza")
 
 
+class Pizza(Base):
+    __tablename__ = "pizza"
+    id = Column(Integer, primary_key=True, index=True)
+    order_id = Column(Integer, ForeignKey("order.id"))
+    toppings = Column("data", postgresql.ARRAY(Integer))
+    # toppings = relationship("PizzaTopping")
+
+
 # Ideally, this should be a many to many relationship
 # Status <- OrderStatus -> Order
 # We'd want to track the throughput of orders. Alternatively, you could store
@@ -41,14 +49,6 @@ class Order(Base):
 #     __tablename__ = "order_status_type"
 #     id = Column(Integer, primary_key=True, index=True)
 #     name = Column(String, unique=True, index=True)
-
-
-class Pizza(Base):
-    __tablename__ = "pizza"
-    id = Column(Integer, primary_key=True, index=True)
-    order_id = Column(Integer, ForeignKey("order.id"))
-    toppings = Column("data", postgresql.ARRAY(Integer))
-    # toppings = relationship("PizzaTopping")
 
 
 # Axing these in favor of an enum to save time.

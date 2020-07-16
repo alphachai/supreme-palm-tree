@@ -105,11 +105,6 @@ async def delete_order(id: int, db: Session = Depends(get_db)):
     return {"sucess": crud.delete(db, models.Order, [id])}
 
 
-# In the real world, you'd probably want to update the order row directly during the process.
-# @app.patch("/orders/{id}/", response_model=Dict[str, schemas.Order])
-# async def update_order()
-
-
 # Pizzas
 @app.post("/pizzas/", response_model=Dict[str, schemas.Pizza])
 async def create_pizza(pizza: schemas.PizzaCreate, db: Session = Depends(get_db)):
@@ -134,16 +129,3 @@ async def get_pizza(id: int, db: Session = Depends(get_db)):
     if not obj:
         raise HTTPException(status_code=404, detail="Pizza not found")
     return {"pizza": obj}
-
-
-# @app.get("/pizzas/", response_model=Dict[str, List[schemas.Pizza]])
-# async def get_pizzas(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-#     return {"pizzas": crud.read(db, models.Pizza, skip, limit)}
-#
-#
-# @app.get("/pizzas/{id}/", response_model=Dict[str, schemas.Pizza])
-# async def get_pizza(id: int, db: Session = Depends(get_db)):
-#     obj = db.query(models.Pizza).filter(models.Pizza.id == id).first()
-#     if not obj:
-#         raise HTTPException(status_code=404, detail="Order not found")
-#     return {"pizza": obj}

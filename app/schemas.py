@@ -24,21 +24,6 @@ class Status(IntEnum):
     CANCELED = 7
 
 
-# Pizza Topping (many-to-many)
-# class PizzaToppingBase(BaseModel):
-#     pizza_id: int
-#     topping_id: int
-#
-# class PizzaToppingCreate(PizzaToppingBase):
-#     pass
-#
-# class PizzaTopping(PizzaToppingBase):
-#     id: int
-#
-#     class Config:
-#         orm_mode = True
-
-
 # Pizza
 class PizzaBase(BaseModel):
     toppings: List[Topping]
@@ -55,21 +40,6 @@ class Pizza(PizzaBase):
 
     class Config:
         orm_mode = True
-
-
-# Topping
-# class ToppingBase(BaseModel):
-#     name: str
-#
-# class ToppingCreate(ToppingBase):
-#     pass
-#
-# class Topping(ToppingBase):
-#     id: int
-#     pizzas: List[PizzaTopping] = []
-#
-#     class Config:
-#         orm_mode = True
 
 
 # Order
@@ -91,23 +61,6 @@ class Order(OrderBase):
         orm_mode = True
 
 
-# Order Status
-# class OrderStatusBase(BaseModel):
-#     status: int
-#     order_id: int
-#
-#
-# class OrderStatusCreate(OrderStatusBase):
-#     pass
-#
-#
-# class OrderStatus(OrderStatusBase):
-#     id: int
-#
-#     class Config:
-#         orm_mode = True
-
-
 # User
 class UserBase(BaseModel):
     email: str = None
@@ -123,3 +76,50 @@ class User(UserBase):
 
     class Config:
         orm_mode = True
+
+
+# Pizza Topping
+# class PizzaToppingBase(BaseModel):
+#     pizza_id: int
+#     topping_id: int
+#
+# class PizzaToppingCreate(PizzaToppingBase):
+#     pass
+#
+# class PizzaTopping(PizzaToppingBase):
+#     id: int
+#
+#     class Config:
+#         orm_mode = True
+
+
+# Topping
+# class ToppingBase(BaseModel):
+#     name: str
+#
+# class ToppingCreate(ToppingBase):
+#     pass
+#
+# class Topping(ToppingBase):
+#     id: int
+#     pizzas: List[PizzaTopping] = []
+#
+#     class Config:
+#         orm_mode = True
+
+
+# Order Status
+# class OrderStatusBase(BaseModel):
+#     status: int
+#     order_id: int
+#
+#
+# class OrderStatusCreate(OrderStatusBase):
+#     pass
+#
+#
+# class OrderStatus(OrderStatusBase):
+#     id: int
+#
+#     class Config:
+#         orm_mode = True
