@@ -89,7 +89,7 @@ None yet.
 
 
 
-# Notes
+## Final Notes
 
 * User *should ideally* validate email and accept a password to hash, if it is going to be the source of truth for identity (IDP). (This is the reason why I used separate "base" and "creation" schemas for each model.) However, no API should provide it's own IDP. The only use for creating users should be session management, and it's use should (1) probably not be behind this API, but if it must, (2) it should be restricted by token-based authentication.
 * It may make sense to roll up API requests into a single call with a new, non-restful endpoint, or via a graphql / gRPC interface. Although, for a pizza shop, the additional overhead for all the requests may be rather inconsequential behind a CDN since the components of a pizza won't change often enough.
