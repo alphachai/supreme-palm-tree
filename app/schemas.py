@@ -48,6 +48,7 @@ class PizzaBase(BaseModel):
 class PizzaCreate(PizzaBase):
     pass
 
+
 class Pizza(PizzaBase):
     id: int
     # toppings: List[PizzaTopping] = []

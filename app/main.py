@@ -63,7 +63,11 @@ async def update_user(id: int, user: schemas.UserBase, db: Session = Depends(get
 # Orders
 @app.post("/orders/", response_model=Dict[str, schemas.Order])
 async def create_order(order: schemas.OrderCreate, db: Session = Depends(get_db)):
-    fields = {"user_id": order.user_id, "timestamp": datetime.utcnow(), "status_id": order.status_id}
+    fields = {
+        "user_id": order.user_id,
+        "timestamp": datetime.utcnow(),
+        "status_id": order.status_id,
+    }
     return {"order": crud.create(db=db, model=models.Order, **fields)}
 
 
@@ -86,7 +90,9 @@ async def get_order(id: int, db: Session = Depends(get_db)):
 
 
 @app.patch("/orders/{id}/", response_model=Dict[str, schemas.Order])
-async def update_order(id: int, order: schemas.OrderBase, db: Session = Depends(get_db)):
+async def update_order(
+    id: int, order: schemas.OrderBase, db: Session = Depends(get_db)
+):
     query = db.query(models.Order).filter(models.Order.id == id)
     if query.count() != 1:
         raise HTTPException(status_code=404, detail="Order not found")

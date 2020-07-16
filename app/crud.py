@@ -65,6 +65,7 @@ def update(db: Session, query: Query, data: pydantic.BaseModel):
     query.update(data.dict(exclude_unset=True))
     return commit(db)
 
+
 def delete(db: Session, model: Base, ids: List[int]):
     query = db.query(model).filter(model.id.in_(ids))
     query.delete(synchronize_session=False)
