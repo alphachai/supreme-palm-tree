@@ -45,9 +45,10 @@ This project uses sqlalchemy to manage postgresql models and alembic to generate
 
 * User 🟢
 * Order 🟢
-* OrderStatus 🟢 (enum, `schemas.Status`)
+* OrderStatus ❌ (used enum instead, `schemas.Status`)
+* OrderStatusUpdate ❌
 * Pizza 🟢
-* Topping 🟢 (enum, `schemas.Topping`)
+* Topping ❌ (used enum instead, `schemas.Topping`)
 * PizzaTopping ❌
 
 
