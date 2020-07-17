@@ -1,6 +1,6 @@
 # supreme-palm-tree
 
-A demo API built with Python 3.8 and FastAPI.
+A demo API built with Python 3.8 using FastAPI, Pydantic (request schemas), SQLAlchemy (ORM), and Alembic (migrations).
 
 
 #### Getting Started
